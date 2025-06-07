@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exam Results</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background: #f2f2f2;
+    }
+    h1 {
+      text-align: center;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 1rem 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.6rem;
+      text-align: left;
+    }
+    th {
+      background-color: #007BFF;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Student Exam Results</h1>
+
+<input type="text" id="searchInput" placeholder="Search by name or roll number..." onkeyup="searchTable()">
+
+<table id="resultsTable">
+  <thead>
+    <tr>
+      <th>Roll No</th>
+      <th>Name</th>
+      <th>Subject 1</th>
+      <th>Subject 2</th>
+      <th>Subject 3</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>101</td>
+      <td>Akhil</td>
+      <td>78</td>
+      <td>82</td>
+      <td>91</td>
+      <td>251</td>
+    </tr>
+    <tr>
+      <td>102</td>
+      <td>Bharath</td>
+      <td>65</td>
+      <td>73</td>
+      <td>80</td>
+      <td>218</td>
+    </tr>
+    <tr>
+      <td>103</td>
+      <td>Charan</td>
+      <td>88</td>
+      <td>79</td>
+      <td>92</td>
+      <td>259</td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+function searchTable() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  const table = document.getElementById("resultsTable");
+  const rows = table.getElementsByTagName("tr");
+
+  for (let i = 1; i < rows.length; i++) {
+    const cells = rows[i].getElementsByTagName("td");
+    let match = false;
+
+    for (let j = 0; j < 2; j++) {
+      if (cells[j].innerText.toLowerCase().includes(input)) {
+        match = true;
+        break;
+      }
+    }
+
+    rows[i].style.display = match ? "" : "none";
+  }
+}
+</script>
+
+</body>
+</html>
